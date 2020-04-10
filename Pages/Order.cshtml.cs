@@ -38,7 +38,8 @@ namespace BakeryRazorPage.Pages
                 using (var smtp = new SmtpClient())
                 {
                     smtp.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
-                    smtp.PickupDirectoryLocation = @"smtp.gmail.com";
+                    var pickupLocation = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    smtp.PickupDirectoryLocation = pickupLocation;
                     var message = new MailMessage();
                     message.To.Add(OrderEmail);
                     message.Subject = "Good Coffee - New Order";
